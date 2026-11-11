@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="A private, offline music player for your own audio files.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>Still — Personal Music</title>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><a class="brand" href="#" aria-label="Still home"><span class="brand-mark">s.</span><span>still<span class="brand-sub"> YOUR MUSIC, HERE</span></span></a><button id="installBtn" class="icon-button install hidden" aria-label="Install app" title="Install app">＋</button></header>
+    <section class="hero"><p class="eyebrow">YOUR PERSONAL LIBRARY</p><h1>Listen to<br><em>what stays.</em></h1><p class="intro">A little space for the music you already love.</p>
+      <div class="hero-actions"><button id="importBtn" class="primary"><span>＋</span> Add music</button><button id="folderBtn" class="secondary">Choose folder</button><input id="fileInput" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac" multiple hidden><input id="folderInput" type="file" accept="audio/*" webkitdirectory multiple hidden></div>
+      <p id="storageNote" class="storage-note">Your music stays on this device.</p>
+    </section>
+    <section class="library"><div class="section-heading"><div><p class="eyebrow">COLLECTION</p><h2>Your library <span id="trackCount" class="count">0</span></h2></div><button id="newPlaylist" class="text-button">＋ Playlist</button></div>
+      <div id="playlistStrip" class="playlist-strip" aria-label="Playlists"></div>
+      <div class="library-toolbar"><span id="listTitle">Recently added</span><button id="sortBtn" class="sort-button">Newest first⌄</button></div>
+      <div id="emptyState" class="empty"><div class="empty-art">♫</div><h3>Your first song goes here.</h3><p>Add audio files from your device. They’ll be saved for offline listening.</p><button id="emptyImport" class="text-button">Choose music →</button></div>
+      <ul id="trackList" class="track-list"></ul>
+    </section>
+    <footer><span>MADE FOR YOUR OWN MUSIC</span><span id="offlineBadge">● READY OFFLINE</span></footer>
+  </main>
+  <aside id="player" class="player hidden" aria-label="Music player"><div class="now-playing"><div id="cover" class="cover">♫</div><div class="track-meta"><strong id="nowTitle">Nothing playing</strong><span id="nowArtist">Choose a song to begin</span></div><button id="queueAdd" class="mini-button" title="Add current song to playlist">＋</button></div><div class="controls"><div class="progress-row"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="duration">0:00</span></div><div class="button-row"><button id="shuffleBtn" class="control-toggle" aria-label="Shuffle" title="Shuffle">⤨</button><button id="prevBtn" class="control" aria-label="Previous">|◀</button><button id="playBtn" class="play-button" aria-label="Play">▶</button><button id="nextBtn" class="control" aria-label="Next">▶|</button><button id="repeatBtn" class="control-toggle" aria-label="Repeat off" title="Repeat off">↻</button></div></div><audio id="audio" preload="metadata"></audio></aside>
+  <dialog id="playlistDialog"><form method="dialog" id="playlistForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">MAKE A LITTLE MIX</p><h2>New playlist</h2><label for="playlistName">Name</label><input id="playlistName" maxlength="40" placeholder="Slow mornings" required><menu><button class="secondary" value="cancel">Cancel</button><button class="primary" id="savePlaylist" value="default">Create playlist</button></menu></form></dialog>
+  <dialog id="addToPlaylistDialog"><form method="dialog" id="addToPlaylistForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">SAVE THIS SONG</p><h2>Add to playlist</h2><div id="playlistChoices"></div><menu><button class="secondary" value="cancel">Done</button></menu></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body></html>
